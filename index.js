@@ -12,12 +12,12 @@ module.exports = function (dxfpath, fn) {
   var min_x, min_y, vt_pid_bool = false, cur_pid = 0, acDbPolyline_bool = false, acDbText_bool = false, acDbEntity = false, caughtDbEntry = false, cur_acDbEntity = "", caughtX = false, caughtY = false, layers = [], texts = [], polygons = [], points = [], pid_count = 0, poly_c = 0;
   var caughtTxt_72 = false, caughtTxt_5 = false, caughtTxt_1 = false;
 
-  var Point = function (x,y) {
+  function Point (x,y) {
     this.x = x;
     this.y = y;
   }
 
-  var TextElement = function (x,y,txt) {
+  function TextElement (x,y,txt) {
     this.x   = x;
     this.y   = y;
     this.txt = txt;
@@ -121,7 +121,17 @@ module.exports = function (dxfpath, fn) {
     }
 
     var mappings = [];
+    var minPoint = new Point(0,0);
+    var maxPoint = new Point(0,0);
     polygons.forEach(function (polygon, p) {
+      
+      polygon.points.forEach(function (tpoint, i) {
+        minPoint.x = tpoint.x < minPoint.x ? tpoint.x : (i === 0 && p === 0 ? tpoint.x : minPoint.x);
+        minPoint.y = tpoint.y < minPoint.y ? tpoint.y : (i === 0 && p === 0 ? tpoint.y : minPoint.y);
+        maxPoint.x = tpoint.x > maxPoint.x ? tpoint.x : (i === 0 && p === 0 ? tpoint.x : maxPoint.x);
+        maxPoint.y = tpoint.y > maxPoint.y ? tpoint.y : (i === 0 && p === 0 ? tpoint.y : maxPoint.y);
+      });
+
       texts.forEach(function (text, t) {
         if (pnpoly(polygon.points, text.txt)) {
           mappings.push({polygonIndex: p, textIndex: t});
@@ -130,6 +140,12 @@ module.exports = function (dxfpath, fn) {
     });
 
     fn({
+      'contour': {
+        'min': minPoint, 
+        'max': maxPoint,
+        'width': maxPoint.x-minPoint.x,
+        'height': maxPoint.y-minPoint.y
+      },
       'layers': layers, 
       'polygons': polygons, 
       'texts': texts, 

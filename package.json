@@ -1,6 +1,6 @@
 {
   "name": "node-dxf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse DXF files to get polygons and text elements.",
   "main": "index.js",
   "scripts": {

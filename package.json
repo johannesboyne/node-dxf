@@ -1,6 +1,6 @@
 {
   "name": "node-dxf",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Parse DXF files to get polygons and text elements.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,10 @@
   "devDependencies": {
     "tap": "1.0.2"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/johannesboyne/node-stl.git"
+  },
   "keywords": [
     "dxf",
     "dwg",

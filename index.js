@@ -62,7 +62,9 @@ module.exports = function (dxfpath, fn) {
       caughtY = true;
     } else if (acDbPolyline_bool === true && caughtY === true) {
       caughtY = false;
-      polygons[polygons.length-1].points[polygons[polygons.length-1].points.length-1].y = Number(chunk.toString());
+      if (polygons[polygons.length-1].points.length) {
+        polygons[polygons.length-1].points[polygons[polygons.length-1].points.length-1].y = Number(chunk.toString());
+      }
     } else if (acDbPolyline_bool === true && chunk.toString().match(/ENDBLK/)) {
       acDbPolyline_bool = false;
       acDbEntity = false;

@@ -82,3 +82,7 @@ node-dxf will give you 4 outputs a.t.m. Layers, polygons, texts and mappings. La
      { polygonIndex: 16, textIndex: 4 },
      { polygonIndex: 17, textIndex: 3 } ] }
 ```
+
+# contributors
+
+- [eurochriskelly](https://github.com/eurochriskelly)

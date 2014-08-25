@@ -1,6 +1,6 @@
 {
   "name": "node-dxf",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parse DXF files to get polygons and text elements.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,10 @@
     "cad",
     "polygons"
   ],
-  "author": "Johannes Boyne <johannes@boyne.de>",
+  "contributors": [
+    {"name": "Johannes Boyne", "email": "johannes@boyne.de", "url": "https://github.com/johannesboyne"},
+    {"name": "Chris Kelly", "email": "", "url": "https://github.com/eurochriskelly"}
+  ],
   "license": "BSD",
   "dependencies": {
     "bufferstream": "~0.5.1"
